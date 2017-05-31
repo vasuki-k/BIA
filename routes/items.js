@@ -27,7 +27,7 @@ WHERE  C.UUID = B.UUID AND D.ITEM_ID=B.ITEM_ID
 AND RowNum  <= 5`;
     getItems(selectStatement, req, res);
 });
-/*ASSET STATUS*/
+/*ASSET STATUS-http://localhost:3090/api/items/statusCount*/
 router.get('/statusCount', function (req, res) {
     var selectStatement = `SELECT STATUS,COUNT(*) AS COUNT FROM ITEM_TBL GROUP BY STATUS`;
     getItems(selectStatement, req, res);
@@ -48,7 +48,7 @@ from (
 FROM 
   ITEM_TBL
 WHERE 
-  STATUS LIKE 'In-Use' )) t
+  STATUS LIKE 'Transit' )) t
 group by t.range
 ORDER BY t.range ASC`;
     getItems(selectStatement, req, res);
